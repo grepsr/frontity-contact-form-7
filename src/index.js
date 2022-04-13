@@ -127,10 +127,6 @@ const MyForm = {
 
             // Once the email is sent, clear the form fields.
             state.cf7.forms[id].inputVals = {};
-            // Clear message after 5s
-            setTimeout(() => {
-              state.cf7.forms[id].message = {};
-            }, 5000);
 
             // REDIRECT TO THANK YOU PAGE
             actions.router.set(
@@ -140,7 +136,8 @@ const MyForm = {
             "validation_failed" === body.status ||
             "mail_failed" === body.status
           ) {
-            console.log("body:", body);
+            // show error fields
+            window.scrollTo(0, 290);
             if (body.invalid_fields) {
               body.invalid_fields.forEach((item) => {
                 // adding error class to error field
