@@ -84,7 +84,7 @@ const MyForm = {
        * @return {Function}
        */
       sendForm:
-        ({ state }) =>
+        ({ state, actions }) =>
         async (id) => {
           const myData = state.cf7.forms[id].inputVals;
 
@@ -114,6 +114,10 @@ const MyForm = {
             state.cf7.forms[id].invalidFields = {};
           }
 
+          const firstName = myData["first-name"];
+          const lastName = myData["last-name"];
+          const name = myData["first-name"] + myData["last-name"];
+
           /**
            * Populate state with the errors, or thank-you message...
            */
@@ -128,17 +132,26 @@ const MyForm = {
               state.cf7.forms[id].message = {};
             }, 5000);
 
-            window.location.replace("http://www.w3schools.com");
+            // REDIRECT TO THANK YOU PAGE
+            actions.router.set(
+              `/thank-you/?first=${firstName}&last=${lastName}`
+            );
           } else if (
             "validation_failed" === body.status ||
             "mail_failed" === body.status
           ) {
+            console.log("body:", body);
             if (body.invalid_fields) {
               body.invalid_fields.forEach((item) => {
+                // adding error class to error field
+                document.querySelectorAll(item.into)[0].classList +=
+                  " has-error";
+
                 let errorKey = item.into.replace(
                   "span.wpcf7-form-control-wrap.",
                   ""
                 );
+
                 if (errorKey) {
                   invalidFieldsObj[errorKey] = item.message;
                 }
