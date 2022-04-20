@@ -127,11 +127,12 @@ const MyForm = {
 
             // Once the email is sent, clear the form fields.
             state.cf7.forms[id].inputVals = {};
-
+            state.userName = firstName;
             // REDIRECT TO THANK YOU PAGE
-            actions.router.set(
-              `/thank-you/?first=${firstName}&last=${lastName}`
-            );
+            // actions.router.set(
+            //   `/thank-you/?first=${firstName}&last=${lastName}`
+            // );
+            actions.router.set(`/thank-you/`);
           } else if (
             "validation_failed" === body.status ||
             "mail_failed" === body.status
