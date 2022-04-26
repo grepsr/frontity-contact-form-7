@@ -1,4 +1,6 @@
 import processors from "./processors";
+import JiraServiceDesk from "./jira";
+const fetch = require("node-fetch");
 
 const MyForm = {
   state: {
@@ -104,8 +106,8 @@ const MyForm = {
             body: formData,
           });
           const body = await res.json();
-          let invalidFieldsObj = {};
 
+          let invalidFieldsObj = {};
           // Set loading to false for the message to show
           state.cf7.forms[id].loading = false;
 
@@ -129,10 +131,25 @@ const MyForm = {
             state.cf7.forms[id].inputVals = {};
             state.userName = firstName;
             // REDIRECT TO THANK YOU PAGE
-            // actions.router.set(
-            //   `/thank-you/?first=${firstName}&last=${lastName}`
-            // );
             actions.router.set(`/thank-you/`);
+
+            // CREATE TICKET IN JIRA
+            const data = {
+              email: myData["your-email"],
+              first_name: myData["first-name"],
+              last_name: myData["last-name"],
+              phone: myData["phone-number"],
+              company_name: myData["company-name"],
+              current_method_of_data_extraction: myData["method"],
+              how_can_we_help: myData["your-message"],
+              page_url: "https://www.grepsr.com/contact-sales/",
+            };
+            const CreateJiraIssue = async () => {
+              const jira = new JiraServiceDesk();
+              await jira.integrateJiraSalesInquiry(data);
+            };
+            CreateJiraIssue();
+            // CREATE TICKET IN JIRA
           } else if (
             "validation_failed" === body.status ||
             "mail_failed" === body.status
