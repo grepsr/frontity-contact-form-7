@@ -237,6 +237,7 @@ class JiraServiceDesk {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
+          mode: "no-cors",
           Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: "Basic " + code,
@@ -252,6 +253,7 @@ class JiraServiceDesk {
       const res = await fetch(`${this.api_base_url}${url}`, {
         method: "GET",
         headers: {
+          mode: "no-cors",
           Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: "Basic " + code,
