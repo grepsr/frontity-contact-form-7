@@ -238,6 +238,7 @@ class JiraServiceDesk {
         body: JSON.stringify(data),
         headers: {
           mode: "no-cors",
+          "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: "Basic " + code,
@@ -254,6 +255,7 @@ class JiraServiceDesk {
         method: "GET",
         headers: {
           mode: "no-cors",
+          "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: "Basic " + code,
