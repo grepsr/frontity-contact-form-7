@@ -142,11 +142,7 @@ const MyForm = {
               how_can_we_help: myData["your-message"],
               page_url: "https://www.grepsr.com/contact-sales/",
             };
-            // const CreateJiraIssue = async () => {
-            //   const jira = new JiraServiceDesk();
-            //   await jira.integrateJiraSalesInquiry(data);
-            // };
-            // CreateJiraIssue();
+
             // CREATE TICKET IN JIRA
           } else if (
             "validation_failed" === body.status ||
