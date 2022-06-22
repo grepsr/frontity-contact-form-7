@@ -128,20 +128,11 @@ const MyForm = {
             // Once the email is sent, clear the form fields.
             state.cf7.forms[id].inputVals = {};
             state.userName = firstName;
-            // REDIRECT TO THANK YOU PAGE
-            actions.router.set(`/thank-you/`);
 
-            // CREATE TICKET IN JIRA
-            const data = {
-              email: myData["your-email"],
-              first_name: myData["first-name"],
-              last_name: myData["last-name"],
-              phone: myData["phone-number"],
-              company_name: myData["company-name"],
-              current_method_of_data_extraction: myData["method"],
-              how_can_we_help: myData["your-message"],
-              page_url: "https://www.grepsr.com/contact-sales/",
-            };
+            // REDIRECT TO THANK YOU PAGE
+            if (!state.router.link.includes("/browser-extensions/uninstall/")) {
+              actions.router.set(`/thank-you/`);
+            }
 
             // CREATE TICKET IN JIRA
           } else if (
