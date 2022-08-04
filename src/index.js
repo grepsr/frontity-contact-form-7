@@ -143,15 +143,12 @@ const MyForm = {
             window.scrollTo(0, 290);
             if (body.invalid_fields) {
               body.invalid_fields.forEach((item) => {
-                // adding error class to error field
-                document.querySelectorAll(item.into)[0].classList +=
+                document.getElementById(item.idref).parentElement.classList +=
                   " has-error";
-
-                let errorKey = item.into.replace(
+                let errorKey = item.idref.replace(
                   "span.wpcf7-form-control-wrap.",
                   ""
                 );
-
                 if (errorKey) {
                   invalidFieldsObj[errorKey] = item.message;
                 }
