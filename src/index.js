@@ -131,7 +131,9 @@ const MyForm = {
 
             // REDIRECT TO THANK YOU PAGE
             if (!state.router.link.includes("/browser-extensions/uninstall/")) {
-              actions.router.set(`/thank-you/`);
+              if (myData["_wpcf7"] != "10224") {
+                actions.router.set(`/thank-you/`);
+              }
             }
 
             // CREATE TICKET IN JIRA
