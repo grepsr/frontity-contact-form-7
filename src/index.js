@@ -130,7 +130,7 @@ const MyForm = {
             state.userName = firstName;
 
             // REDIRECT TO THANK YOU PAGE
-            if (!state.router.link.includes("/browser-extensions/uninstall/")) {
+            if (!state.router.link.includes("/browser-extensions/uninstall")) {
               if (myData["_wpcf7"] != "10224") {
                 actions.router.set(`/thank-you/`);
               }
