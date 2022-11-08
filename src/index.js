@@ -131,8 +131,11 @@ const MyForm = {
 
             // REDIRECT TO THANK YOU PAGE
             if (!state.router.link.includes("/browser-extensions/uninstall")) {
+              // not redirect for subscribe page
               if (myData["_wpcf7"] != "10224") {
-                actions.router.set(`/thank-you/`);
+                if (!state.router.link.includes("/partner-with-grepsr")) {
+                  actions.router.set(`/thank-you/`);
+                }
               }
             }
 
