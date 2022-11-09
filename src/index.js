@@ -124,6 +124,7 @@ const MyForm = {
           if ("mail_sent" === body.status) {
             state.cf7.forms[id].status = "sent";
             state.cf7.forms[id].message = body.message;
+            window.scrollTo(0, 0);
 
             // Once the email is sent, clear the form fields.
             state.cf7.forms[id].inputVals = {};
@@ -133,9 +134,7 @@ const MyForm = {
             if (!state.router.link.includes("/browser-extensions/uninstall")) {
               // not redirect for subscribe page
               if (myData["_wpcf7"] != "10224") {
-                if (!state.router.link.includes("/partner-with-grepsr")) {
-                  actions.router.set(`/thank-you/`);
-                }
+                actions.router.set(`/thank-you/`);
               }
             }
 
