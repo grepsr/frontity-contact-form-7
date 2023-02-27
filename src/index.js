@@ -92,7 +92,11 @@ const MyForm = {
           let formData = new FormData();
 
           Object.keys(myData).forEach((key) => {
-            formData.append(key, myData[key]);
+            const d = myData[key];
+            const scriptRegex =
+              /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+            const sanitizedData = d.replace(scriptRegex, "");
+            formData.append(key, sanitizedData);
           });
 
           // CF7 REST API URL.
