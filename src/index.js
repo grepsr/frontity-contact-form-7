@@ -121,6 +121,7 @@ const MyForm = {
           const firstName = myData["first-name"];
           const lastName = myData["last-name"];
           const name = myData["first-name"] + myData["last-name"];
+          const userEmail = myData["your-email"];
 
           /**
            * Populate state with the errors, or thank-you message...
@@ -133,6 +134,7 @@ const MyForm = {
             // Once the email is sent, clear the form fields.
             state.cf7.forms[id].inputVals = {};
             state.userName = firstName;
+            state.email = userEmail;
 
             // REDIRECT TO THANK YOU PAGE
             if (!state.router.link.includes("/browser-extensions/uninstall")) {
